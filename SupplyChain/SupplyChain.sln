@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplyChain", "SupplyChain\SupplyChain.csproj", "{E5022DE0-891E-48C0-9024-4669F975D077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplyChain.Tests", "SupplyChain.Tests\SupplyChain.Tests.csproj", "{FA0210D4-76F9-40AC-B058-AE375E7F02ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5022DE0-891E-48C0-9024-4669F975D077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5022DE0-891E-48C0-9024-4669F975D077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5022DE0-891E-48C0-9024-4669F975D077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5022DE0-891E-48C0-9024-4669F975D077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA0210D4-76F9-40AC-B058-AE375E7F02ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA0210D4-76F9-40AC-B058-AE375E7F02ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA0210D4-76F9-40AC-B058-AE375E7F02ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA0210D4-76F9-40AC-B058-AE375E7F02ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A6F7DCA-401F-4089-B263-10D753FB5106}
+	EndGlobalSection
+EndGlobal
