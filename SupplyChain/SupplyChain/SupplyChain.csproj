@@ -67,40 +67,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\main.css" />
-    <Content Include="images\bg-heading-02.jpg" />
-    <Content Include="index.html" />
-    <Content Include="js\global.js" />
-    <Content Include="vendor\datepicker\daterangepicker.css" />
-    <Content Include="vendor\datepicker\daterangepicker.js" />
-    <Content Include="vendor\datepicker\moment.min.js" />
-    <Content Include="vendor\font-awesome-4.7\css\font-awesome.css" />
-    <Content Include="vendor\font-awesome-4.7\css\font-awesome.min.css" />
-    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.svg" />
-    <Content Include="vendor\font-awesome-4.7\HELP-US-OUT.txt" />
-    <Content Include="vendor\jquery\jquery.js" />
-    <Content Include="vendor\jquery\jquery.min.js" />
-    <Content Include="vendor\mdi-font\css\material-design-iconic-font.css" />
-    <Content Include="vendor\mdi-font\css\material-design-iconic-font.min.css" />
-    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.svg" />
-    <Content Include="vendor\select2\select2.min.css" />
-    <Content Include="vendor\select2\select2.min.js" />
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
+    <Content Include="MainPage.aspx" />
+    <Content Include="ProductInfoPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blockchain\Block.cs" />
+    <Compile Include="MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductInfoPage.aspx.cs">
+      <DependentUpon>ProductInfoPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductInfoPage.aspx.designer.cs">
+      <DependentUpon>ProductInfoPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.eot" />
-    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.ttf" />
-    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff" />
-    <Content Include="vendor\font-awesome-4.7\fonts\fontawesome-webfont.woff2" />
-    <Content Include="vendor\font-awesome-4.7\fonts\FontAwesome.otf" />
-    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.eot" />
-    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.ttf" />
-    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff" />
-    <Content Include="vendor\mdi-font\fonts\Material-Design-Iconic-Font.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
