@@ -6,12 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace SupplyChain {
-    public partial class MainPage : System.Web.UI.Page {
+    public partial class Site : System.Web.UI.MasterPage {
         protected void Page_Load(object sender, EventArgs e) {
 
         }
 
-        protected void SubmitButtonClick(object sender, EventArgs e) {
+        protected void LoginButton_Click(object sender, EventArgs e) {
 
         }
     }
