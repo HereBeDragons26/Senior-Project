@@ -20,12 +20,33 @@
     <form id="form1" runat="server">
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand1">Supply Chain</a>
-            <asp:Button ID="LoginButton" runat="server" Text="Login" CssClass="btn btn-danger" OnClick="LoginButton_Click" />
+            <button id="toformbutton" type="button" class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">Login</button>
         </nav>
 
-        <div class="container body-content">
+        <div class="container">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+
+            <div class="modal fade" id="popUpWindow" >
+                <div class="modal-dialog">
+                    <div class="model-content">
+
+                        <div class="modal-header">
+                            <h2 style="font-size: 30px;">Sign In</h2>
+                        </div>
+
+                        <div class="modal-body">
+                            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button id="first" class="btn btn-primary btn-block" type="button" onclick="alert('Thanks for registration!')">SUBMIT</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </form>
 
