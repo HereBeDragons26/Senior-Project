@@ -42,15 +42,3 @@ margin: 0 auto;
 .navbar-brand1 {
     color:white;
 }
-
-.modal-dialog {
-    background-color: white;
-    width: 470px;
-    height: 600px;
-}
-
-.modal-footer {
-    position: absolute;
-    left: 0px;
-    width: 440px;
-}
