@@ -11,7 +11,11 @@ namespace SupplyChain {
 
         }
 
-        protected void SubmitButtonClick(object sender, EventArgs e) {
+        protected void VerifyButtonClick(object sender, EventArgs e) {
+
+            String id = ProductIdTextbox.Text;
+
+            Response.Redirect("VerifyResult.aspx?id=" + id);
 
         }
     }

@@ -10,24 +10,15 @@
 namespace SupplyChain {
     
     
-    public partial class MainPage {
+    public partial class VerifyResult {
         
         /// <summary>
-        /// ProductIdTextbox denetimi.
+        /// VerifyResultTable denetimi.
         /// </summary>
         /// <remarks>
         /// Otomatik üretilmiş alan.
         /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductIdTextbox;
-        
-        /// <summary>
-        /// VerifyButton1 denetimi.
-        /// </summary>
-        /// <remarks>
-        /// Otomatik üretilmiş alan.
-        /// Değiştirmek için, alan bildirimini tasarımcı dosyasından arka plan kod dosyasına taşıyın.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button VerifyButton1;
+        protected global::System.Web.UI.WebControls.Table VerifyResultTable;
     }
 }

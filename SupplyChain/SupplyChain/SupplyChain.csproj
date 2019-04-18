@@ -85,10 +85,12 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="MainPage.aspx" />
     <Content Include="ProductInfoPage.aspx" />
+    <Content Include="VerifyResult.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blockchain\Block.cs" />
+    <Compile Include="Feature.cs" />
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,6 +98,7 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Product.cs" />
     <Compile Include="ProductInfoPage.aspx.cs">
       <DependentUpon>ProductInfoPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -112,6 +115,13 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="VerifyResult.aspx.cs">
+      <DependentUpon>VerifyResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerifyResult.aspx.designer.cs">
+      <DependentUpon>VerifyResult.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap-grid.css.map" />
