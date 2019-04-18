@@ -56,6 +56,30 @@ namespace SupplyChain
              * Return it.
              */
 
+            /*** Test ***/
+
+            Feature feature;
+
+            feature = new Feature(new DateTime(2019, 04, 15), "Recieved by the market");
+            product.features.Add(feature);
+
+            feature = new Feature(new DateTime(2019, 04, 10), "Milked from cow 1250193");
+            product.features.Add(feature);
+
+            feature = new Feature(new DateTime(2019, 04, 13), "Boxed");
+            product.features.Add(feature);
+
+            feature = new Feature(new DateTime(2019, 04, 12), "Pastorized");
+            product.features.Add(feature);
+
+            feature = new Feature(new DateTime(2019, 04, 11), "Shipped to the factory");
+            product.features.Add(feature);
+
+            feature = new Feature(new DateTime(2019, 04, 14), "Sent to the market");
+            product.features.Add(feature);
+
+            /***      ***/
+
 
             return product;
 
