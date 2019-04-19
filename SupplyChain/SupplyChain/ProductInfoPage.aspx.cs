@@ -9,6 +9,8 @@ namespace SupplyChain {
     public partial class ProductInfoPage : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
 
+            if (Session["username"] == null) Response.Redirect("MainPage.aspx");
+
         }
     }
 }
