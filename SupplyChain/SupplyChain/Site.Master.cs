@@ -11,10 +11,12 @@ namespace SupplyChain {
         protected void Page_Load(object sender, EventArgs e) {
 
             // in case, there have been logged in
-            if(Session["username"] != null)
+            if (Request.Cookies["UserIdentity"] != null)
             {
                 LoginPopupButton.Visible = false;
                 LogoutButton.Visible = true;
+
+                return;
             }
 
         }
@@ -26,23 +28,36 @@ namespace SupplyChain {
              * Return a boolean indicates whether login successful or not.
              */
 
+            // LoginDataSource ask to the database for given password and email
+            // if they are matched, then dv has the user
             DataView dv = (DataView) LoginDataSource.Select(DataSourceSelectArguments.Empty);
 
             if(dv.Table.Rows.Count == 0) return; // login is failed
 
             /*** login is successful ***/
 
+            // switch the visibilty of buttons
             LoginPopupButton.Visible = false;
             LogoutButton.Visible = true;
-
-            Session["username"] = UserNameTextBox.Text;
-
+            
+            // Create a cookie to recognize the user later
+            HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
+            cookieUserIdentity["email"] = UserNameTextBox.Text;
+            cookieUserIdentity["password"] = PasswordTextBox.Text;
+            cookieUserIdentity.Expires = DateTime.Now.AddDays(7); // 1 week expire date
+            Response.Cookies.Add(cookieUserIdentity);
 
         }
 
         protected void LogoutButton_Click(object sender, EventArgs e)
         {
-            Session.Abandon();
+
+            // Delete the cookie
+            HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
+            cookieUserIdentity.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(cookieUserIdentity);
+
+            // switch the visibilty of buttons
             LoginPopupButton.Visible = true;
             LogoutButton.Visible = false;
 
