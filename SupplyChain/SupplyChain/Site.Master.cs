@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -20,14 +21,14 @@ namespace SupplyChain {
 
         protected void LoginButton_Click(object sender, EventArgs e) {
 
-            bool isLoginSuccess = true;
-
             /*
              * Here it talks with database.
              * Return a boolean indicates whether login successful or not.
              */
 
-            if (!isLoginSuccess) return; // login is failed
+            DataView dv = (DataView) LoginDataSource.Select(DataSourceSelectArguments.Empty);
+
+            if(dv.Table.Rows.Count == 0) return; // login is failed
 
             /*** login is successful ***/
 
