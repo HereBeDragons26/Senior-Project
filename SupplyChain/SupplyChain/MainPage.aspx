@@ -2,11 +2,10 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <div class="form-signin">  
-        <img alt="" src="images/supplychain.jpg" class="form-img" />
+    <div class="form-signin" style="text-align: center;">  
+        <img alt="" src="images/supplychain.png" class="form-img" />
         <asp:TextBox ID="ProductIdTextbox" CssClass="form-control" runat="server" ></asp:TextBox>
-        <br />
-        <asp:Button ID="VerifyButton1" Text="Verify" runat="server" OnClick="VerifyButtonClick" CssClass="btn btn-lg btn-danger btn-block" />
+        <asp:Button ID="VerifyButton1" Text="Verify" runat="server" OnClick="VerifyButtonClick" CssClass="btn btn-lg btn-danger btn-block" style="margin-top: 10px;"/>
     </div>
       
 </asp:Content>
