@@ -4,12 +4,17 @@
 
     <div style="margin: 10px; padding: 10px;">
         <div style="float: left">
+
             <div style="float: left; text-align: right; padding: 10px">
+                <asp:Label ID="IdLabel" runat="server" Text="ID: "></asp:Label>
+                <br />
                 <asp:Label ID="DateLabel" runat="server" Text="Date: "></asp:Label>
                 <br />
                 <asp:Label ID="DescriptionLabel" runat="server" Text="Description: "></asp:Label>
             </div>
             <div style="float: right; text-align: left; height: 150px; width: 500px; padding: 10px">
+                <asp:TextBox ID="IdInput" runat="server"></asp:TextBox>
+                <br />
                 <asp:TextBox ID="DateInput" runat="server" TextMode="Date"></asp:TextBox>
                 <br />
                 <asp:TextBox ID="DescriptionTextBox" TextMode="multiline" Columns="10" Rows="5" runat="server" Height="100%" Width="100%"></asp:TextBox>
