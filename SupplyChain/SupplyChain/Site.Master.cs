@@ -13,8 +13,7 @@ namespace SupplyChain {
             // in case, there have been logged in
             if (Request.Cookies["UserIdentity"] != null)
             {
-                LoginPopupButton.Visible = false;
-                LogoutButton.Visible = true;
+                ControlVisibilty("in");
 
                 return;
             }
@@ -36,16 +35,15 @@ namespace SupplyChain {
 
             /*** login is successful ***/
 
-            // switch the visibilty of buttons
-            LoginPopupButton.Visible = false;
-            LogoutButton.Visible = true;
-            
             // Create a cookie to recognize the user later
             HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
             cookieUserIdentity["email"] = UserNameTextBox.Text;
             cookieUserIdentity["password"] = PasswordTextBox.Text;
             cookieUserIdentity.Expires = DateTime.Now.AddDays(7); // 1 week expire date
             Response.Cookies.Add(cookieUserIdentity);
+
+            // switch the visibilty of buttons
+            ControlVisibilty("in");
 
         }
 
@@ -58,11 +56,38 @@ namespace SupplyChain {
             Response.Cookies.Add(cookieUserIdentity);
 
             // switch the visibilty of buttons
-            LoginPopupButton.Visible = true;
-            LogoutButton.Visible = false;
+            ControlVisibilty("out");
 
             // after logout redirect to the mainpage
             Response.Redirect("MainPage.aspx");
+
+        }
+
+        protected void ProductInfoRedirectButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ProductInfoPage.aspx");
+        }
+
+        protected void ControlVisibilty(String LogStatus)
+        {
+
+            if (LogStatus == "in")
+            {
+                LoginPopupButton.Visible = false;
+                LogoutButton.Visible = true;
+                ProductInfoRedirectButton.Visible = true;
+                WelcomeNavLabel.InnerText = "Welcome, " + Request.Cookies["UserIdentity"]["email"];
+
+                return;
+            }
+
+            if(LogStatus == "out")
+            {
+                LoginPopupButton.Visible = true;
+                LogoutButton.Visible = false;
+                ProductInfoRedirectButton.Visible = false;
+                WelcomeNavLabel.InnerText = ""; // leave it empty
+            }
 
         }
     }

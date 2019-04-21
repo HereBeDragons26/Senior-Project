@@ -20,9 +20,11 @@
 <body>
     <form id="form1" runat="server">
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" style="color: white">Supply Chain</a>
-            <asp:Button ID="LogoutButton" OnClick="LogoutButton_Click" Visible="false" Text="Logout" runat="server" CssClass="btn btn-success" />
-            <button id="LoginPopupButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" runat="server">Login</button>
+            <a class="navbar-brand p-2 flex-grow-1 bd-highlight" style="color: white">Supply Chain</a>
+            <a id="WelcomeNavLabel" class="navbar-brand p-2 bd-highlight" style="color: white" runat="server"/>
+            <asp:Button ID="ProductInfoRedirectButton" OnClick="ProductInfoRedirectButton_Click" Visible="false" Text="Product Info" runat="server" CssClass="btn btn-success p-2 bd-highlight mx-1" />
+            <asp:Button ID="LogoutButton" OnClick="LogoutButton_Click" Visible="false" Text="Logout" runat="server" CssClass="btn btn-success p-2 bd-highlight" />
+            <button id="LoginPopupButton" type="button" class="btn btn-success p-2 bd-highlight" data-toggle="modal" data-target="#exampleModal" runat="server">Login</button>
         </nav>
 
         <div class="container">
