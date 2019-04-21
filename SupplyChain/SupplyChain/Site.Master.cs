@@ -31,7 +31,12 @@ namespace SupplyChain {
             // if they are matched, then dv has the user
             DataView dv = (DataView) LoginDataSource.Select(DataSourceSelectArguments.Empty);
 
-            if(dv.Table.Rows.Count == 0) return; // login is failed
+            // login is failed
+            if (dv.Table.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "unsuccessLogin();", true);
+                return;
+            }
 
             /*** login is successful ***/
 
