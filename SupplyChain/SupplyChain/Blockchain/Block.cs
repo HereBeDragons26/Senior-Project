@@ -30,7 +30,7 @@ namespace SupplyChain.Blockchain {
         public string calculateHash()
         {
             SHA256 sHA256 = SHA256.Create();
-            byte[] input = Encoding.ASCII.GetBytes(Data + ProductID.ToString() + CompanyID.ToString());
+            byte[] input = Encoding.ASCII.GetBytes(Data + ProductID.ToString() + CompanyID.ToString() + DateTime.Now);
             byte[] output = sHA256.ComputeHash(input);
 
             return Convert.ToString(output);
