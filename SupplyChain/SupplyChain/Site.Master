@@ -9,9 +9,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
 
+     <!-- jQuery and Bootstrap JS files -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/MyStyle.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+
+        function unsuccessLogin() {
+            $(".myalert").find('.mymessage').text("Unsuccessful Attempt");
+            $(".myalert").fadeIn("slow", function () {
+                setTimeout(function () {
+                    $(".myalert").fadeOut("slow");
+                }, 2500);
+            });
+        }
+
+    </script>
 
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -20,12 +38,18 @@
 <body>
     <form id="form1" runat="server">
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" style="color: white">Supply Chain</a>
-            <asp:Button ID="LogoutButton" OnClick="LogoutButton_Click" Visible="false" Text="Logout" runat="server" CssClass="btn btn-success" />
-            <button id="LoginPopupButton" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" runat="server">Login</button>
+            <div class="myalert myhide" style="display:none; text-align:center; position:absolute; left:40%; background-color:#dc3545; width:300px">
+                <div class="mymessage" style="padding:5px; font-weight:bolder; color:white"></div>
+            </div>
+            <a class="navbar-brand p-2 flex-grow-1 bd-highlight" style="color: white">Supply Chain</a>
+            <a id="WelcomeNavLabel" class="navbar-brand p-2 bd-highlight" style="color: white" runat="server"/>
+            <asp:Button ID="ProductInfoRedirectButton" OnClick="ProductInfoRedirectButton_Click" Visible="false" Text="Product Info" runat="server" CssClass="btn btn-success p-2 bd-highlight mx-1" />
+            <asp:Button ID="LogoutButton" OnClick="LogoutButton_Click" Visible="false" Text="Logout" runat="server" CssClass="btn btn-success p-2 bd-highlight" />
+            <button id="LoginPopupButton" type="button" class="btn btn-success p-2 bd-highlight" data-toggle="modal" data-target="#exampleModal" runat="server">Login</button>
         </nav>
 
         <div class="container">
+
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
 
@@ -56,13 +80,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-    <!-- jQuery and Bootstrap JS files -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
         <asp:SqlDataSource ID="LoginDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:UsersConnectionString %>" SelectCommand="SELECT * FROM [Users] WHERE (([email] = @email) AND ([password] = @password))">
             <SelectParameters>
                 <asp:ControlParameter ControlID="UserNameTextBox" Name="email" PropertyName="Text" Type="String" />

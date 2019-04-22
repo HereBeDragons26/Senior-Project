@@ -31,6 +31,24 @@ namespace SupplyChain {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// WelcomeNavLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor WelcomeNavLabel;
+        
+        /// <summary>
+        /// ProductInfoRedirectButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ProductInfoRedirectButton;
+        
+        /// <summary>
         /// LogoutButton control.
         /// </summary>
         /// <remarks>
