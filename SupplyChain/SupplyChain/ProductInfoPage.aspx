@@ -33,6 +33,13 @@
                 </asp:TableRow>
             </asp:Table>  
         </div>
+        <div id="addedParents" style="float: left">
+            <asp:Table ID="AddedParentsTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server">
+                <asp:TableRow>
+                    <asp:TableCell Font-Bold="true">ParentId</asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>  
+        </div>
     </div>
 
 </asp:Content>

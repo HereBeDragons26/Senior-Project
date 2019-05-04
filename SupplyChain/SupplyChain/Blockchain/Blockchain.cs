@@ -20,7 +20,7 @@ namespace SupplyChain.Blockchain {
         }
 
         public static Block CreateGenesisBlock() {
-            return new Block(null, genesisBlockID, null, "0");
+            return new Block(new List<long>(), genesisBlockID, new Product(), "0");
         }
 
         public static Block CreateBlock(List<long> parentID, Product product) {

@@ -9,10 +9,16 @@ namespace SupplyChain {
     public partial class ProductInfoPage : System.Web.UI.Page {
 
         static Product currentProduct;
+        static List<long> parents;
 
         protected void Page_Load(object sender, EventArgs e) {
 
-            if (!IsPostBack) currentProduct = new Product();
+            if (!IsPostBack)
+            {
+                currentProduct = new Product();
+                parents = new List<long>();
+                DateInput.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
 
             // in case, no logged in
             if (Request.Cookies["UserIdentity"] == null)
@@ -22,8 +28,6 @@ namespace SupplyChain {
 
                 return;
             }
-
-
 
         }
 
@@ -40,6 +44,16 @@ namespace SupplyChain {
              */
 
             printProductInAddedInfosTable(currentProduct);
+            printParentsInAddedParentsTable(parents);
+
+        }
+
+        protected void AddParentId_Click(object sender, EventArgs e)
+        {
+            parents.Add(long.Parse(ProductParentIdInput.Text));
+
+            printProductInAddedInfosTable(currentProduct);
+            printParentsInAddedParentsTable(parents);
 
         }
 
@@ -50,9 +64,13 @@ namespace SupplyChain {
              *  Here the current product is sent to the blockchain
              */
 
+            Blockchain.Blockchain.CreateBlock(parents, currentProduct);
+
             currentProduct = new Product();
+            parents = new List<long>();
 
             printProductInAddedInfosTable(currentProduct);
+            printParentsInAddedParentsTable(parents);
 
         }
 
@@ -82,9 +100,19 @@ namespace SupplyChain {
 
         }
 
-        protected void AddParentId_Click(object sender, EventArgs e)
+        protected void printParentsInAddedParentsTable(List<long> parents)
         {
+            parents.ForEach(p =>
+           {
+               TableRow r = new TableRow();
 
+               TableCell c = new TableCell();
+               c.Controls.Add(new LiteralControl(p.ToString()));
+               r.Cells.Add(c);
+
+               AddedParentsTable.Rows.Add(r);
+           });
         }
+
     }
 }
