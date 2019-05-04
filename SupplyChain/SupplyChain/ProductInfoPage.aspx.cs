@@ -38,6 +38,7 @@ namespace SupplyChain {
              * Each time page is loaded, table gets reset.
              * So, print table each time.
              */
+
             printProductInAddedInfosTable(currentProduct);
 
         }
@@ -81,5 +82,9 @@ namespace SupplyChain {
 
         }
 
+        protected void AddParentId_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

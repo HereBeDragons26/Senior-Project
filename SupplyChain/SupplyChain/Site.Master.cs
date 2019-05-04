@@ -32,7 +32,7 @@ namespace SupplyChain {
             DataView dv = (DataView) LoginDataSource.Select(DataSourceSelectArguments.Empty);
 
             // login is failed
-            if (dv.Table.Rows.Count == 0)
+            if (dv == null || dv.Table.Rows.Count == 0)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "unsuccessLogin();", true);
                 return;

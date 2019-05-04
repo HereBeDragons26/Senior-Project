@@ -13,13 +13,13 @@ namespace SupplyChain {
     public partial class ProductInfoPage {
         
         /// <summary>
-        /// IdLabel control.
+        /// ProductParentIdLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label IdLabel;
+        protected global::System.Web.UI.WebControls.Label ProductParentIdLabel;
         
         /// <summary>
         /// DateLabel control.
@@ -40,13 +40,22 @@ namespace SupplyChain {
         protected global::System.Web.UI.WebControls.Label DescriptionLabel;
         
         /// <summary>
-        /// IdInput control.
+        /// ProductParentIdInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IdInput;
+        protected global::System.Web.UI.WebControls.TextBox ProductParentIdInput;
+        
+        /// <summary>
+        /// AddParentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddParentId;
         
         /// <summary>
         /// DateInput control.

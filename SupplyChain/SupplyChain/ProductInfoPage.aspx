@@ -6,17 +6,18 @@
         <div style="float: left">
 
             <div style="float: left; text-align: right; padding: 10px">
-                <asp:Label ID="IdLabel" runat="server" Text="ID: "></asp:Label>
+                <asp:Label ID="ProductParentIdLabel" runat="server" Text="Parent ID: "></asp:Label>
                 <br />
                 <asp:Label ID="DateLabel" runat="server" Text="Date: "></asp:Label>
                 <br />
                 <asp:Label ID="DescriptionLabel" runat="server" Text="Description: "></asp:Label>
             </div>
             <div style="float: right; text-align: left; height: 150px; width: 500px; padding: 10px">
-                <asp:TextBox ID="IdInput" runat="server"></asp:TextBox>
+                <asp:TextBox ID="ProductParentIdInput" runat="server"></asp:TextBox>
+                &nbsp;<asp:Button ID="AddParentId" OnClick="AddParentId_Click" runat="server" Text="Add Parent ID" />
                 <br />
                 <asp:TextBox ID="DateInput" runat="server" TextMode="Date"></asp:TextBox>
-                <br />
+                &nbsp;<br />
                 <asp:TextBox ID="DescriptionTextBox" TextMode="multiline" Columns="10" Rows="5" runat="server" Height="100%" Width="100%"></asp:TextBox>
                 <div style="float: left; width: 100%; padding-top: 5px">
                     <asp:Button ID="NewInfoButton" OnClick="NewInfoButton_Click" runat="server" Text="Add New Info" Style="float: left;" />
