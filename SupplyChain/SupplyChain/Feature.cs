@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SupplyChain
-{
-    public class Feature
-    {
+namespace SupplyChain {
+    public class Feature {
 
-        public DateTime date;
-        public String description;
+        public DateTime Date { get; set; }
+        public string Description { get; set; }
 
-        public Feature(DateTime date, String description)
-        {
-            this.date = date;
-            this.description = description;
+        public Feature(DateTime date, string description) {
+            Date = date;
+            Description = description;
         }
-
     }
 }
