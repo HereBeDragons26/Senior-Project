@@ -32,7 +32,7 @@ namespace SupplyChain {
             Feature feature;
 
             feature = new Feature(Convert.ToDateTime(DateInput.Text), DescriptionTextBox.Text);
-            currentProduct.features.Add(feature);
+            currentProduct.Features.Add(feature);
 
             /*
              * Each time page is loaded, table gets reset.
@@ -59,9 +59,9 @@ namespace SupplyChain {
         protected void printProductInAddedInfosTable(Product product)
         {
 
-            product.features.Sort((f1, f2) => f1.date.CompareTo(f2.date));
+            product.Features.Sort((f1, f2) => f1.Date.CompareTo(f2.Date));
 
-            product.features.ForEach(p =>
+            product.Features.ForEach(p =>
             {
                 TableRow r = new TableRow();
 
@@ -70,11 +70,11 @@ namespace SupplyChain {
                  */
 
                 TableCell c1 = new TableCell();
-                c1.Controls.Add(new LiteralControl(p.date.ToString("dd/MM/yyyy")));
+                c1.Controls.Add(new LiteralControl(p.Date.ToString("dd/MM/yyyy")));
                 r.Cells.Add(c1);
 
                 TableCell c2 = new TableCell();
-                c2.Controls.Add(new LiteralControl(p.description));
+                c2.Controls.Add(new LiteralControl(p.Description));
                 r.Cells.Add(c2);
 
                 AddedInfosTable.Rows.Add(r);

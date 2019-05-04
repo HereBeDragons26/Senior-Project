@@ -7,38 +7,27 @@ using System.Web;
 
 namespace SupplyChain.Blockchain {
     public class Block {
-        private DateTime Times { get; set; }
-        private int ProductID { get; set; }
-        private int CompanyID { get; set; }
-        private string Data { get; set; }
-        private string Hash { get; set; }
-        private string PreviousHash { get; set; }
-        private int Index { get; set; }
+        public DateTime Time { get; set; }
+        public List<long> ParentID { get; set; }
+        public long BlockID { get; set; }
+        public Product Product { get; set; }
+        public string Hash { get; set; }
+        public string PreviousHash { get; set; }
 
-
-        public Block(DateTime times,string data,string previoushash,int index,int companyID,int productID)
-        {
-            Times = times;
-            Data = data;
-            Hash = calculateHash();
-            PreviousHash = previoushash;
-            Index = index;
-            CompanyID = companyID;
-            ProductID = productID;
+        public Block(List<long> parentID, long blockID, Product product, string previousHash) {
+            Time = DateTime.Now;
+            ParentID = parentID;
+            BlockID = blockID;
+            Product = product;
+            Hash = CalculateHash();
+            PreviousHash = previousHash;
         }
 
-        public string calculateHash()
-        {
+        public string CalculateHash() {
             SHA256 sHA256 = SHA256.Create();
-            byte[] input = Encoding.ASCII.GetBytes(Data + ProductID.ToString() + CompanyID.ToString());
+            byte[] input = Encoding.ASCII.GetBytes(Time + ParentID.ToString() + BlockID + Product);
             byte[] output = sHA256.ComputeHash(input);
-
             return Convert.ToString(output);
-
-
         }
-        
-        
-
     }
 }
