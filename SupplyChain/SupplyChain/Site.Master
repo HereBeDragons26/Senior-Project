@@ -67,10 +67,10 @@
                             <asp:Image ID="Image1" runat="server" ImageUrl="~/images/group.png" ImageAlign="Middle" Width="50%" CssClass="mx-auto d-block" />
                             <asp:Label ID="UsernameLabel" runat="server" Text="Username"></asp:Label>
                             <br/> 
-                            <asp:TextBox ID="UserNameTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="UserNameTextBox" runat="server" onkeydown = "return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                             <asp:Label ID="PasswordLabel" runat="server" Text="Password"></asp:Label>
                             <br/> 
-                            <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="PasswordTextBox" runat="server" onkeydown = "return (event.keyCode!=13);" TextMode="Password" CssClass="form-control"></asp:TextBox>
                             <br/> 
                             <asp:HyperLink ID="ForgotPasswordHyperLink" runat="server" Style="float: right; font-size: small; font-weight: bold" >Forgot Password?</asp:HyperLink>
                         </div>
