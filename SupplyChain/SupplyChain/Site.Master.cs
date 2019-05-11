@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -32,26 +33,54 @@ namespace SupplyChain {
 
             // LoginDataSource ask to the database for given password and email
             // if they are matched, then dv has the user
-            DataView dv = (DataView) LoginDataSource.Select(DataSourceSelectArguments.Empty);
 
+            SqlConnection connection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["SupplyChain"].ConnectionString);
+            String QueryforLogin = "Select * From Users Where Users.Email=" + UserNameTextBox.Text;
+            SqlCommand command = new SqlCommand(QueryforLogin,connection);
+            SqlDataReader dataReader=command.ExecuteReader();
+            
+            HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
             // login is failed
-            if (dv == null || dv.Table.Rows.Count == 0)
+            if (!dataReader.Read())
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "unsuccessLogin();", true);
                 return;
             }
+            else
+            {
+
+                cookieUserIdentity["email"] = UserNameTextBox.Text;
+                cookieUserIdentity["password"] = PasswordTextBox.Text;
+                cookieUserIdentity.Expires = DateTime.Now.AddDays(7); // 1 week expire date
+                Response.Cookies.Add(cookieUserIdentity);
+                // switch the visibilty of buttons
+                ControlVisibilty("in");
+
+            }
+            
+
+
+
+            //DataView dv = (DataView) LoginDataSource.Select(DataSourceSelectArguments.Empty);
+
+            //// login is failed
+            //if (dv == null || dv.Table.Rows.Count == 0)
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "unsuccessLogin();", true);
+            //    return;
+            //}
 
             /*** login is successful ***/
 
             // Create a cookie to recognize the user later
-            HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
-            cookieUserIdentity["email"] = UserNameTextBox.Text;
-            cookieUserIdentity["password"] = PasswordTextBox.Text;
-            cookieUserIdentity.Expires = DateTime.Now.AddDays(7); // 1 week expire date
-            Response.Cookies.Add(cookieUserIdentity);
+            //HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
+            //cookieUserIdentity["email"] = UserNameTextBox.Text;
+            //cookieUserIdentity["password"] = PasswordTextBox.Text;
+            //cookieUserIdentity.Expires = DateTime.Now.AddDays(7); // 1 week expire date
+            //Response.Cookies.Add(cookieUserIdentity);
 
-            // switch the visibilty of buttons
-            ControlVisibilty("in");
+            //// switch the visibilty of buttons
+            //ControlVisibilty("in");
 
         }
 
