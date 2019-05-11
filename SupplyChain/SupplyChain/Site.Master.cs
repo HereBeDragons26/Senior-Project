@@ -35,7 +35,8 @@ namespace SupplyChain {
             // if they are matched, then dv has the user
 
             SqlConnection connection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["SupplyChain"].ConnectionString);
-            String QueryforLogin = "Select * From Users Where Users.Email=" + UserNameTextBox.Text;
+            connection.Open();
+            String QueryforLogin = "Select * From Users Where Users.Email='" + UserNameTextBox.Text + "' ";
             SqlCommand command = new SqlCommand(QueryforLogin,connection);
             SqlDataReader dataReader=command.ExecuteReader();
             
