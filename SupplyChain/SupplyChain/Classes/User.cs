@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SupplyChain {
+namespace SupplyChain.Classes {
     public class User {
         private int userId { get; set; }
         private int companyId { get; set; }

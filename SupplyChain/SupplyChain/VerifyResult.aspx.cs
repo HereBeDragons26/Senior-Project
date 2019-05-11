@@ -1,4 +1,4 @@
-﻿using SupplyChain.Blockchain;
+﻿using SupplyChain.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +44,11 @@ namespace SupplyChain {
 
         Product VerifyId(string id) {
 
-            List<Block> blocks = new List<Block>();
-            while(true) {
-                blocks.Add(Blockchain.Blockchain.GetBlock(int.Parse(id)));
+            //List<Block> blocks = new List<Block>();
+            //while(true) {
+            //    blocks.Add(Classes.BlockChain.GetBlock(int.Parse(id)));
 
-            }
+            //}
 
             Product product = new Product();
 
@@ -60,33 +60,32 @@ namespace SupplyChain {
 
             /*** Test ***/
 
-            Feature feature;
+            //Feature feature;
 
-            feature = new Feature(new DateTime(2019, 04, 15), "Recieved by the market");
-            product.Features.Add(feature);
+            //feature = new Feature(new DateTime(2019, 04, 15), "Recieved by the market");
+            //product.Features.Add(feature);
 
-            feature = new Feature(new DateTime(2019, 04, 10), "Milked from cow 1250193");
-            product.Features.Add(feature);
+            //feature = new Feature(new DateTime(2019, 04, 10), "Milked from cow 1250193");
+            //product.Features.Add(feature);
 
-            feature = new Feature(new DateTime(2019, 04, 13), "Boxed");
-            product.Features.Add(feature);
+            //feature = new Feature(new DateTime(2019, 04, 13), "Boxed");
+            //product.Features.Add(feature);
 
-            feature = new Feature(new DateTime(2019, 04, 12), "Pastorized");
-            product.Features.Add(feature);
+            //feature = new Feature(new DateTime(2019, 04, 12), "Pastorized");
+            //product.Features.Add(feature);
 
-            feature = new Feature(new DateTime(2019, 04, 11), "Shipped to the factory");
-            product.Features.Add(feature);
+            //feature = new Feature(new DateTime(2019, 04, 11), "Shipped to the factory");
+            //product.Features.Add(feature);
 
-            feature = new Feature(new DateTime(2019, 04, 14), "Sent to the market");
-            product.Features.Add(feature);
+            //feature = new Feature(new DateTime(2019, 04, 14), "Sent to the market");
+            //product.Features.Add(feature);
 
-            /***      ***/
+            ///***      ***/
 
 
             return product;
 
         }
-
 
     }
 }

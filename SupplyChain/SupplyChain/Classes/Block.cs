@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace SupplyChain.Blockchain {
+namespace SupplyChain.Classes {
     public class Block {
         public DateTime Time { get; set; }
         public List<long> ParentID { get; set; }

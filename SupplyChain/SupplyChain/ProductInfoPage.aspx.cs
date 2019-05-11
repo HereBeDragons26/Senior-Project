@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SupplyChain.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -64,7 +65,7 @@ namespace SupplyChain {
              *  Here the current product is sent to the blockchain
              */
 
-            Blockchain.Blockchain.CreateBlock(parents, currentProduct);
+            //Classes.BlockChain.CreateBlock(parents, currentProduct);
 
             currentProduct = new Product();
             parents = new List<long>();

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SupplyChain.Blockchain {
-    public class Blockchain {
+namespace SupplyChain.Classes {
+    public class BlockChain {
         private static List<Block> Chain = null;
         public static List<string> minerIPs = new List<string>();
 
-        private Blockchain() {
+        private BlockChain() {
             GetChain();
         }
         public static List<Block> GetChain() {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Blockchain {
+namespace SupplyChain.Classes {
     public class Data {
 
         public List<long> ProductID { set; get; }

@@ -6,18 +6,15 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace SupplyChain {
+namespace SupplyChain.Classes {
     public class TCP {
 
         static Thread listenerThread = null;
 
         public static readonly int PORT = 13000;
-        public static string SenderIP = "10.27.12.242";
-        public static string ReceiverIP = "10.27.13.14";
-        //public static int ListenerPort { get; set; }
 
-        public static void Send(string message) {
-            TcpClient tcpClient = new TcpClient(SenderIP, PORT);
+        public static void Send(string ip, string message) {
+            TcpClient tcpClient = new TcpClient(ip, PORT);
             NetworkStream stream = tcpClient.GetStream();
 
             ASCIIEncoding asen = new ASCIIEncoding();
@@ -30,7 +27,23 @@ namespace SupplyChain {
             stream.Close();
         }
 
-        private static void listenerMethod() {
+        public static void SendAllMiners(string message) {
+            BlockChain.minerIPs.ForEach(mp => {
+                TcpClient tcpClient = new TcpClient(mp, PORT);
+                NetworkStream stream = tcpClient.GetStream();
+
+                ASCIIEncoding asen = new ASCIIEncoding();
+                byte[] ba = asen.GetBytes(message);
+
+                stream.Write(ba, 0, ba.Length);
+
+                tcpClient.Close();
+                stream.Flush();
+                stream.Close();
+            });
+        }
+
+        private static void ListenerMethod() {
             while (true) {
                 TcpListener listener = new TcpListener(IPAddress.Any, PORT);
                 listener.Start();
@@ -61,7 +74,7 @@ namespace SupplyChain {
         }
 
         public static void StartListener() {
-            listenerThread = new Thread(new ThreadStart(listenerMethod)) {
+            listenerThread = new Thread(new ThreadStart(ListenerMethod)) {
                 Name = "UdpConnection.ListenThread"
             };
             listenerThread.Start();
@@ -94,6 +107,5 @@ namespace SupplyChain {
                     TypeNameHandling = TypeNameHandling.Objects
                 });
         }
-
     }
 }
