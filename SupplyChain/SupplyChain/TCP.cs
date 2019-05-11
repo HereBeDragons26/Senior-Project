@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace Blockchain {
+namespace SupplyChain {
     public class TCP {
 
         static Thread listenerThread = null;
@@ -37,6 +37,7 @@ namespace Blockchain {
                 Socket client = null;
                 try {
                     client = listener.AcceptSocket();
+                    String ip = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
                     byte[] bytes = new byte[1024];
 
                     int size = client.Receive(bytes);
@@ -44,7 +45,8 @@ namespace Blockchain {
                     for (int i = 0; i < size; i++)
                         str += Convert.ToChar(bytes[i]);
 
-                    Console.WriteLine(str);
+                    new Thread(() => Interpreter(str, ip)).Start();
+
                 }
                 catch (Exception e) {
                     Console.WriteLine(e.ToString());
@@ -58,21 +60,24 @@ namespace Blockchain {
             }
         }
 
-        private static void executer(String message, byte[] bytes) {
-            //if (message.StartsWith("FileSize")) {
-            //    message = message.Substring(8, message.Length - 8);
-            //    String[] strArray = message.Split('$');
-            //    Data.PackageSize = int.Parse(strArray[0]);
-            //    Data.Image = new byte[int.Parse(strArray[1])];
-            //    Data.ByteMax = int.Parse(strArray[1]);
-            //    Receiver.connection(Data.SendIp);
-        }
-
         public static void StartListener() {
             listenerThread = new Thread(new ThreadStart(listenerMethod)) {
                 Name = "UdpConnection.ListenThread"
             };
             listenerThread.Start();
+        }
+
+        private static void Interpreter(string message, string ip) {
+
+            // received miners list
+            if (message.StartsWith("connectToNetwork")) {
+
+
+                System.Diagnostics.Debug.WriteLine(message);               
+
+                return;
+            }
+
         }
 
         public static string JsonSerialize(object graph) {

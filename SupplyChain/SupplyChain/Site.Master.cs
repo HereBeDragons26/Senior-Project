@@ -10,6 +10,10 @@ namespace SupplyChain {
     public partial class Site : System.Web.UI.MasterPage {
         protected void Page_Load(object sender, EventArgs e) {
 
+            if (!IsPostBack) {
+                TCP.StartListener();
+            }
+
             // in case, there have been logged in
             if (Request.Cookies["UserIdentity"] != null)
             {
