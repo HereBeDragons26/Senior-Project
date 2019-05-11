@@ -14,26 +14,22 @@ namespace SupplyChain {
 
         protected void Page_Load(object sender, EventArgs e) {
 
-            if (!IsPostBack)
-            {
+            if (!IsPostBack) {
                 currentProduct = new Product();
                 parents = new List<long>();
                 DateInput.Text = DateTime.Now.ToString("dd/MM/yyyy");
             }
 
             // in case, no logged in
-            if (Request.Cookies["UserIdentity"] == null)
-            {
+            if (Request.Cookies["UserIdentity"] == null) {
                 // Always redirect to the mainpage
                 Response.Redirect("MainPage.aspx");
 
                 return;
             }
-
         }
 
-        protected void NewInfoButton_Click(object sender, EventArgs e)
-        {
+        protected void NewInfoButton_Click(object sender, EventArgs e) {
             Feature feature;
 
             feature = new Feature(Convert.ToDateTime(DateInput.Text), DescriptionTextBox.Text);
@@ -44,44 +40,41 @@ namespace SupplyChain {
              * So, print table each time.
              */
 
-            printProductInAddedInfosTable(currentProduct);
-            printParentsInAddedParentsTable(parents);
-
+            PrintProductInAddedInfosTable(currentProduct);
+            PrintParentsInAddedParentsTable(parents);
         }
 
-        protected void AddParentId_Click(object sender, EventArgs e)
-        {
+        protected void AddParentId_Click(object sender, EventArgs e) {
             parents.Add(long.Parse(ProductParentIdInput.Text));
 
-            printProductInAddedInfosTable(currentProduct);
-            printParentsInAddedParentsTable(parents);
-
+            PrintProductInAddedInfosTable(currentProduct);
+            PrintParentsInAddedParentsTable(parents);
         }
 
-        protected void SubmitButton_Click(object sender, EventArgs e)
-        {
+        protected void SubmitButton_Click(object sender, EventArgs e) {
 
             /*
              *  Here the current product is sent to the blockchain
              */
-
+            Data data = new Data {
+                ParentID = parents,
+                Product = currentProduct
+            };
+            TCP.SendAllMiners("addBlock" + TCP.JsonSerialize(data));
             //Classes.BlockChain.CreateBlock(parents, currentProduct);
 
             currentProduct = new Product();
             parents = new List<long>();
 
-            printProductInAddedInfosTable(currentProduct);
-            printParentsInAddedParentsTable(parents);
-
+            PrintProductInAddedInfosTable(currentProduct);
+            PrintParentsInAddedParentsTable(parents);
         }
 
-        protected void printProductInAddedInfosTable(Product product)
-        {
+        protected void PrintProductInAddedInfosTable(Product product) {
 
             product.Features.Sort((f1, f2) => f1.Date.CompareTo(f2.Date));
 
-            product.Features.ForEach(p =>
-            {
+            product.Features.ForEach(p => {
                 TableRow r = new TableRow();
 
                 /*
@@ -101,18 +94,16 @@ namespace SupplyChain {
 
         }
 
-        protected void printParentsInAddedParentsTable(List<long> parents)
-        {
-            parents.ForEach(p =>
-           {
-               TableRow r = new TableRow();
+        protected void PrintParentsInAddedParentsTable(List<long> parents) {
+            parents.ForEach(p => {
+                TableRow r = new TableRow();
 
-               TableCell c = new TableCell();
-               c.Controls.Add(new LiteralControl(p.ToString()));
-               r.Cells.Add(c);
+                TableCell c = new TableCell();
+                c.Controls.Add(new LiteralControl(p.ToString()));
+                r.Cells.Add(c);
 
-               AddedParentsTable.Rows.Add(r);
-           });
+                AddedParentsTable.Rows.Add(r);
+            });
         }
 
     }

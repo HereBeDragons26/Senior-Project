@@ -6,13 +6,12 @@ using System.Text;
 namespace SupplyChain.Classes {
     public class Data {
 
-        public List<long> ProductID { set; get; }
-
-        public Product product { set; get; }
+        public List<long> ParentID { set; get; }
+        public Product Product { set; get; }
 
         public Data() {
-            ProductID = new List<long>();
-            product = new Product();
+            ParentID = new List<long>();
+            Product = new Product();
         }
 
     }

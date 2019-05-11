@@ -12,6 +12,7 @@ namespace SupplyChain.Classes {
         static Thread listenerThread = null;
 
         public static readonly int PORT = 13000;
+        public static List<string> minerIPs = new List<string>();
 
         public static void Send(string ip, string message) {
             TcpClient tcpClient = new TcpClient(ip, PORT);
@@ -28,7 +29,8 @@ namespace SupplyChain.Classes {
         }
 
         public static void SendAllMiners(string message) {
-            BlockChain.minerIPs.ForEach(mp => {
+            minerIPs.ForEach(mp => {
+
                 TcpClient tcpClient = new TcpClient(mp, PORT);
                 NetworkStream stream = tcpClient.GetStream();
 
@@ -84,10 +86,13 @@ namespace SupplyChain.Classes {
 
             // received miners list
             if (message.StartsWith("connectToNetwork")) {
+                Send(ip, "minersList" + JsonSerialize(minerIPs));
+                return;
+            }
 
-
-                System.Diagnostics.Debug.WriteLine(message);               
-
+            if (message.StartsWith("addMeNow")) {
+                minerIPs.Add(ip);
+                SendAllMiners("newMinerJoined" + ip);
                 return;
             }
 

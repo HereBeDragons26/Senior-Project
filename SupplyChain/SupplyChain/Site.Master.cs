@@ -19,10 +19,8 @@ namespace SupplyChain {
             if (Request.Cookies["UserIdentity"] != null)
             {
                 ControlVisibilty("in");
-
                 return;
             }
-
         }
 
         protected void LoginButton_Click(object sender, EventArgs e) {
