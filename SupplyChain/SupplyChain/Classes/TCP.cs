@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SupplyChain.Model;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -46,10 +47,12 @@ namespace SupplyChain.Classes {
         }
 
         private static void ListenerMethod() {
+
+            TcpListener listener = new TcpListener(IPAddress.Any, PORT);
+            listener.Start();
+            Socket client = null;
+
             while (true) {
-                TcpListener listener = new TcpListener(IPAddress.Any, PORT);
-                listener.Start();
-                Socket client = null;
                 try {
                     client = listener.AcceptSocket();
                     String ip = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
@@ -66,16 +69,11 @@ namespace SupplyChain.Classes {
                 catch (Exception e) {
                     Console.WriteLine(e.ToString());
                 }
-                finally {
-                    if (client != null)
-                        client.Close();
-                    if (listener != null)
-                        listener.Stop();
-                }
             }
         }
 
         public static void StartListener() {
+            if (listenerThread != null) return;
             listenerThread = new Thread(new ThreadStart(ListenerMethod)) {
                 Name = "UdpConnection.ListenThread"
             };
@@ -84,15 +82,26 @@ namespace SupplyChain.Classes {
 
         private static void Interpreter(string message, string ip) {
 
+            message = message.Replace("Blockchain", "SupplyChain");
+
             // received miners list
             if (message.StartsWith("connectToNetwork")) {
-                Send(ip, "minersList" + JsonSerialize(minerIPs));
+                Send(ip, "minersList" + JsonSerialize(new { miners = minerIPs }));
                 return;
             }
 
             if (message.StartsWith("addMeNow")) {
+                if (minerIPs.Contains(ip)) return;
                 minerIPs.Add(ip);
                 SendAllMiners("newMinerJoined" + ip);
+                return;
+            }
+
+            if (message.StartsWith("verifyReturn")) {
+                message = message.Substring(12);
+                Product product = (Product) JsonDeserialize(message);
+                VerifyResult.verifyResultPageInstance.printProductInTable(product);
+                VerifyResult.verifyResultPageInstance.finish = true;
                 return;
             }
 

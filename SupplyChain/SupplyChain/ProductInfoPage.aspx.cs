@@ -1,4 +1,5 @@
 ﻿using SupplyChain.Classes;
+using SupplyChain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,14 @@ namespace SupplyChain {
         }
 
         protected void AddParentId_Click(object sender, EventArgs e) {
-            parents.Add(long.Parse(ProductParentIdInput.Text));
+
+
+            try{
+                parents.Add(long.Parse(ProductParentIdInput.Text));
+            }
+            catch(System.FormatException) {
+
+            }
 
             PrintProductInAddedInfosTable(currentProduct);
             PrintParentsInAddedParentsTable(parents);
@@ -56,12 +64,15 @@ namespace SupplyChain {
             /*
              *  Here the current product is sent to the blockchain
              */
+
             Data data = new Data {
                 ParentID = parents,
                 Product = currentProduct
             };
+
             TCP.SendAllMiners("addBlock" + TCP.JsonSerialize(data));
-            //Classes.BlockChain.CreateBlock(parents, currentProduct);
+
+            /** Reset Table **/
 
             currentProduct = new Product();
             parents = new List<long>();

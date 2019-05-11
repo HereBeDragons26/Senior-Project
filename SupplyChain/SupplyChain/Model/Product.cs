@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SupplyChain.Classes {
+namespace SupplyChain.Model {
     public class Product {
         public List<Feature> Features { get; set; }
 

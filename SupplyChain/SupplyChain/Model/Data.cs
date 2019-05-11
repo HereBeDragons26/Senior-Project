@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SupplyChain.Classes {
+namespace SupplyChain.Model {
     public class Data {
 
         public List<long> ParentID { set; get; }

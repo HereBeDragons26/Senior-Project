@@ -89,8 +89,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Data.cs" />
-    <Compile Include="Classes\Feature.cs" />
+    <Compile Include="Model\Data.cs" />
+    <Compile Include="Model\Feature.cs" />
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -98,7 +98,7 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Product.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="ProductInfoPage.aspx.cs">
       <DependentUpon>ProductInfoPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,7 +115,7 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Classes\TCP.cs" />
-    <Compile Include="Classes\User.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="VerifyResult.aspx.cs">
       <DependentUpon>VerifyResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

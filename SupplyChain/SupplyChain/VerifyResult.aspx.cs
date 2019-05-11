@@ -1,4 +1,5 @@
 ﻿using SupplyChain.Classes;
+using SupplyChain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,26 @@ using System.Web.UI.WebControls;
 
 namespace SupplyChain {
     public partial class VerifyResult : System.Web.UI.Page {
+
+        public static VerifyResult verifyResultPageInstance;
+        public volatile Boolean finish;
+
         protected void Page_Load(object sender, EventArgs e) {
 
             if (IsPostBack) return;
 
             String id = Request.QueryString["id"];
 
+            verifyResultPageInstance = this;
 
-            Product product = VerifyId(id);
+            TCP.Send(TCP.minerIPs[0], "verify" + id);
 
-            printProductInTable(product);
+            while (!finish) ;
 
         }
 
 
-        protected void printProductInTable(Product product) {
+        public void printProductInTable(Product product) {
 
             product.Features.Sort((f1, f2) => f1.Date.CompareTo(f2.Date));
 
@@ -39,51 +45,6 @@ namespace SupplyChain {
 
                 VerifyResultTable.Rows.Add(r);
             });
-
-        }
-
-        Product VerifyId(string id) {
-
-            //List<Block> blocks = new List<Block>();
-            //while(true) {
-            //    blocks.Add(Classes.BlockChain.GetBlock(int.Parse(id)));
-
-            //}
-
-            Product product = new Product();
-
-            /*
-             * Here it talks with blockchain.
-             * Generates a product.
-             * Return it.
-             */
-
-            /*** Test ***/
-
-            //Feature feature;
-
-            //feature = new Feature(new DateTime(2019, 04, 15), "Recieved by the market");
-            //product.Features.Add(feature);
-
-            //feature = new Feature(new DateTime(2019, 04, 10), "Milked from cow 1250193");
-            //product.Features.Add(feature);
-
-            //feature = new Feature(new DateTime(2019, 04, 13), "Boxed");
-            //product.Features.Add(feature);
-
-            //feature = new Feature(new DateTime(2019, 04, 12), "Pastorized");
-            //product.Features.Add(feature);
-
-            //feature = new Feature(new DateTime(2019, 04, 11), "Shipped to the factory");
-            //product.Features.Add(feature);
-
-            //feature = new Feature(new DateTime(2019, 04, 14), "Sent to the market");
-            //product.Features.Add(feature);
-
-            ///***      ***/
-
-
-            return product;
 
         }
 
