@@ -17,23 +17,8 @@ namespace SupplyChain.Classes {
         public static List<string> minerIPs = new List<string>();
 
         public static void Send(string ip, string message) {
-            TcpClient tcpClient = new TcpClient(ip, MinerPort);
-            NetworkStream stream = tcpClient.GetStream();
-
-            ASCIIEncoding asen = new ASCIIEncoding();
-            byte[] ba = asen.GetBytes(message);
-
-            stream.Write(ba, 0, ba.Length);
-
-            tcpClient.Close();
-            stream.Flush();
-            stream.Close();
-        }
-
-        public static void SendAllMiners(string message) {
-            minerIPs.ForEach(mp => {
-
-                TcpClient tcpClient = new TcpClient(mp, MinerPort);
+            try {
+                TcpClient tcpClient = new TcpClient(ip, MinerPort);
                 NetworkStream stream = tcpClient.GetStream();
 
                 ASCIIEncoding asen = new ASCIIEncoding();
@@ -44,11 +29,35 @@ namespace SupplyChain.Classes {
                 tcpClient.Close();
                 stream.Flush();
                 stream.Close();
-            });
+            }
+            catch (Exception e) {
+                Console.WriteLine("----------Can't connect to miner----------\n\n" + e.StackTrace);
+            }
+        }
+
+        public static void SendAllMiners(string message) {
+            try {
+                minerIPs.ForEach(mp => {
+
+                    TcpClient tcpClient = new TcpClient(mp, MinerPort);
+                    NetworkStream stream = tcpClient.GetStream();
+
+                    ASCIIEncoding asen = new ASCIIEncoding();
+                    byte[] ba = asen.GetBytes(message);
+
+                    stream.Write(ba, 0, ba.Length);
+
+                    tcpClient.Close();
+                    stream.Flush();
+                    stream.Close();
+                });
+            }
+            catch (Exception e) {
+                Console.WriteLine("----------Can't connect to miners----------\n\n" + e.StackTrace);
+            }
         }
 
         private static void ListenerMethod() {
-
             TcpListener listener = new TcpListener(IPAddress.Any, WebServerPort);
             listener.Start();
             Socket client = null;
@@ -103,6 +112,11 @@ namespace SupplyChain.Classes {
                 Product product = (Product) JsonDeserialize(message);
                 VerifyResult.verifyResultPageInstance.printProductInTable(product);
                 VerifyResult.verifyResultPageInstance.finish = true;
+                return;
+            }
+
+            if (message.StartsWith("exit")) {
+                minerIPs.Remove(ip);
                 return;
             }
 
