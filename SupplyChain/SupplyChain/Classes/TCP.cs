@@ -12,11 +12,12 @@ namespace SupplyChain.Classes {
 
         static Thread listenerThread = null;
 
-        public static readonly int PORT = 13000;
+        public static readonly int WebServerPort = 13001;
+        public static readonly int MinerPort = 13000;
         public static List<string> minerIPs = new List<string>();
 
         public static void Send(string ip, string message) {
-            TcpClient tcpClient = new TcpClient(ip, PORT);
+            TcpClient tcpClient = new TcpClient(ip, MinerPort);
             NetworkStream stream = tcpClient.GetStream();
 
             ASCIIEncoding asen = new ASCIIEncoding();
@@ -32,7 +33,7 @@ namespace SupplyChain.Classes {
         public static void SendAllMiners(string message) {
             minerIPs.ForEach(mp => {
 
-                TcpClient tcpClient = new TcpClient(mp, PORT);
+                TcpClient tcpClient = new TcpClient(mp, MinerPort);
                 NetworkStream stream = tcpClient.GetStream();
 
                 ASCIIEncoding asen = new ASCIIEncoding();
@@ -48,7 +49,7 @@ namespace SupplyChain.Classes {
 
         private static void ListenerMethod() {
 
-            TcpListener listener = new TcpListener(IPAddress.Any, PORT);
+            TcpListener listener = new TcpListener(IPAddress.Any, WebServerPort);
             listener.Start();
             Socket client = null;
 
