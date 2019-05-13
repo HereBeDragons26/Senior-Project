@@ -28,6 +28,8 @@ namespace SupplyChain {
 
                 return;
             }
+            DateInput.Text = DateTime.Now.ToString("yyyy-MM-dd");
+           
         }
 
         protected void NewInfoButton_Click(object sender, EventArgs e) {
@@ -94,6 +96,7 @@ namespace SupplyChain {
 
                 TableCell c1 = new TableCell();
                 c1.Controls.Add(new LiteralControl(p.Date.ToString("dd/MM/yyyy")));
+
                 r.Cells.Add(c1);
 
                 TableCell c2 = new TableCell();

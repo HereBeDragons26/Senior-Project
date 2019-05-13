@@ -36,7 +36,7 @@ namespace SupplyChain {
 
             SqlConnection connection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["SupplyChain"].ConnectionString);
             connection.Open();
-            String QueryforLogin = "Select * From Users Where Users.Email='" + UserNameTextBox.Text + "' ";
+            String QueryforLogin = "Select * From Users Where Users.Email='" + UserNameTextBox.Text + "' "+ "AND Users.Password='" + PasswordTextBox.Text + "' ";
             SqlCommand command = new SqlCommand(QueryforLogin,connection);
             SqlDataReader dataReader=command.ExecuteReader();
             

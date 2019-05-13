@@ -21,9 +21,9 @@ namespace SupplyChain {
 
             verifyResultPageInstance = this;
 
-            TCP.Send(TCP.minerIPs[0], "verify" + id);
+            //TCP.Send(TCP.minerIPs[0], "verify" + id);
 
-            while (!finish) ;
+            //while (!finish) ;
 
         }
 
