@@ -41,16 +41,18 @@ namespace SupplyChain {
             SqlDataReader dataReader=command.ExecuteReader();
             
             HttpCookie cookieUserIdentity = new HttpCookie("UserIdentity");
+
             // login is failed
             if (!dataReader.Read())
-            {
+            { 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "unsuccessLogin();", true);
                 return;
             }
             else
             {
-
+                string nameofUser = (string)dataReader["Name"];
                 cookieUserIdentity["email"] = UserNameTextBox.Text;
+                cookieUserIdentity["name"] = nameofUser;
                 cookieUserIdentity["password"] = PasswordTextBox.Text;
                 cookieUserIdentity.Expires = DateTime.Now.AddDays(7); // 1 week expire date
                 Response.Cookies.Add(cookieUserIdentity);
@@ -114,7 +116,7 @@ namespace SupplyChain {
                 LoginPopupButton.Visible = false;
                 LogoutButton.Visible = true;
                 ProductInfoRedirectButton.Visible = true;
-                WelcomeNavLabel.InnerText = "Welcome, " + Request.Cookies["UserIdentity"]["email"];
+                WelcomeNavLabel.InnerText =  Request.Cookies["UserIdentity"]["name"];
 
                 return;
             }
@@ -127,6 +129,11 @@ namespace SupplyChain {
                 WelcomeNavLabel.InnerText = ""; // leave it empty
             }
 
+        }
+
+      
+        protected void SupplyChain_Click(object sender, EventArgs e) {
+            Response.Redirect("MainPage.aspx");
         }
     }
 }

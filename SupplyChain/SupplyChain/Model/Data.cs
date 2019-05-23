@@ -9,10 +9,12 @@ namespace SupplyChain.Model {
         public List<long> ParentID { set; get; }
         public Product Product { set; get; }
         public string Author { set; get; }
+       
 
         public Data() {
             ParentID = new List<long>();
             Product = new Product();
+
         }
 
         public override string ToString() {

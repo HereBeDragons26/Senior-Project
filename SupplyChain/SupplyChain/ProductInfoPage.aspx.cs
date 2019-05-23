@@ -2,6 +2,7 @@
 using SupplyChain.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -67,11 +68,14 @@ namespace SupplyChain {
             /*
              *  Here the current product is sent to the blockchain
              */
-
+            var value="Test Author";
+            if (Request.Cookies["UserIdentity"]["name"] != null) {
+                 value = Request.Cookies["UserIdentity"]["name"];
+            }
             Data data = new Data {
                 ParentID = parents,
                 Product = currentProduct,
-                Author = "Test User"
+                Author = value
             };
 
             TCP.SendAllMiners("addBlock" + TCP.JsonSerialize(data));
