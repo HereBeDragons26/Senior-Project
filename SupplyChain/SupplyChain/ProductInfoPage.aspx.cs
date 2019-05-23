@@ -18,7 +18,7 @@ namespace SupplyChain {
             if (!IsPostBack) {
                 currentProduct = new Product();
                 parents = new List<long>();
-                DateInput.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                DateInput.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
 
             // in case, no logged in
@@ -28,7 +28,7 @@ namespace SupplyChain {
 
                 return;
             }
-            DateInput.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            
            
         }
 
