@@ -96,7 +96,7 @@ namespace SupplyChain.Classes {
 
             // received miners list
             if (message.StartsWith("connectToNetwork")) {
-                Send(ip, "minersList" + JsonSerialize(new { miners = minerIPs }));
+                Send(ip, "minersList" + JsonSerialize(new { list = minerIPs }));
                 return;
             }
 
@@ -110,7 +110,7 @@ namespace SupplyChain.Classes {
             if (message.StartsWith("verifyReturn")) {
                 message = message.Substring(12);
                 Product product = (Product) JsonDeserialize(message);
-                VerifyResult.verifyResultPageInstance.printProductInTable(product);
+                VerifyResult.currentProduct = product;
                 VerifyResult.verifyResultPageInstance.finish = true;
                 return;
             }

@@ -13,6 +13,8 @@ namespace SupplyChain {
         public static VerifyResult verifyResultPageInstance;
         public volatile Boolean finish;
 
+        public static Product currentProduct;
+
         protected void Page_Load(object sender, EventArgs e) {
 
             if (IsPostBack) return;
@@ -27,10 +29,16 @@ namespace SupplyChain {
 
             finish = false;
 
+            printProductInTable(currentProduct);
+
         }
 
 
-        public void printProductInTable(Product product) {
+        private void printProductInTable(Product product) {
+
+            for (int i = 1; i < VerifyResultTable.Rows.Count; i++) {
+                VerifyResultTable.Rows.RemoveAt(i);
+            }
 
             product.Features.Sort((f1, f2) => f1.Date.CompareTo(f2.Date));
 

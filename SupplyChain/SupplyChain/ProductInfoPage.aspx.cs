@@ -16,22 +16,20 @@ namespace SupplyChain {
         public static string lastBlockID;
 
         protected void Page_Load(object sender, EventArgs e) {
-            
+                    
             // in case, no logged in
             if (Request.Cookies["UserIdentity"] == null) {
                 // Always redirect to the mainpage
                 Response.Redirect("MainPage.aspx");
 
                 return;
-            }           
-
+            } 
+            
             if (!IsPostBack) {
                 currentProduct = new Product();
                 parents = new List<long>();
-                DateInput.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                DateInput.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
-
-            DateInput.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
         }
 
@@ -72,7 +70,8 @@ namespace SupplyChain {
 
             Data data = new Data {
                 ParentID = parents,
-                Product = currentProduct
+                Product = currentProduct,
+                Author = "Test User"
             };
 
             TCP.SendAllMiners("addBlock" + TCP.JsonSerialize(data));
@@ -90,7 +89,7 @@ namespace SupplyChain {
             while(waitBlockID);
 
             // print blockID
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "alert( BlockID: " + lastBlockID + ")", true);
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "alert( 'BlockID: " + lastBlockID + "')", true);
 
         }
 
