@@ -4,7 +4,7 @@
     
     <div style="margin-top: 5px" > 
 
-        <asp:Table ID="VerifyResultTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server" BorderStyle="Dashed" BorderColor="#81DAF5" BorderWidth="5px"  > 
+        <asp:Table ID="VerifyResultTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server" BorderStyle="Outset" BorderColor="Gray" BorderWidth="5px"  > 
             <asp:TableRow >
                 <asp:TableCell Font-Bold="true" >Date</asp:TableCell>
                 <asp:TableCell Font-Bold="true">Description</asp:TableCell>
