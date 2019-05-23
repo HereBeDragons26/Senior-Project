@@ -5,13 +5,13 @@
     <div style="margin: 10px; padding: 10px;">
         <div style="float: left">
 
-            <div style="float: left; text-align: right; padding: 10px; ">
-                <asp:Label ID="ProductParentIdLabel" runat="server" Text="Parent ID: " Font-Names="Bookman" Font-Bold="true"  Font-Italic="true">
+            <div style="float: left; text-align: right; padding-top : 20px;  ">
+                <asp:Label ID="ProductParentIdLabel" AssociatedControlID="ProductParentIdInput" runat="server" Text="Parent ID: " Font-Names="Bookman" Font-Bold="true"  Font-Italic="true" >
                </asp:Label>
                 <br />
-                <asp:Label ID="DateLabel" runat="server" Text="Date: " Font-Names="Bookman" Font-Bold="true"  Font-Italic="true"></asp:Label>
+                <asp:Label ID="DateLabel" runat="server" Text="Date: " AssociatedControlID="DateInput" Font-Names="Bookman" Font-Bold="true"  Font-Italic="true" ></asp:Label>
                 <br />
-                <asp:Label ID="DescriptionLabel" runat="server" Text="Description: " Font-Names="Bookman" Font-Bold="true"  Font-Italic="true"></asp:Label>
+                <asp:Label ID="DescriptionLabel" runat="server" Text="Description: " AssociatedControlID="DescriptionTextBox" Font-Names="Bookman" Font-Bold="true"  Font-Italic="true"></asp:Label>
             </div>
             <div style="float: right; text-align: left; height: 150px; width: 500px; padding: 10px">
                 <asp:TextBox ID="ProductParentIdInput" runat="server" BorderStyle="Inset" BorderColor="#85C1E9" BorderWidth="6px"></asp:TextBox>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div id="addedInfos" style="float: left">
-            <asp:Table ID="AddedInfosTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server" BorderStyle="Double" BorderColor="#85C1E9" BorderWidth="6px">
+            <asp:Table ID="AddedInfosTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server" BorderStyle="Groove" BorderColor="#85C1E9" BorderWidth="6px">
                 <asp:TableRow>
                     <asp:TableCell Font-Bold="true">Date</asp:TableCell>
                     <asp:TableCell Font-Bold="true">Description</asp:TableCell>
@@ -36,7 +36,7 @@
             </asp:Table>  
         </div>
         <div id="addedParents" style="float: left">
-            <asp:Table ID="AddedParentsTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server"  BorderStyle="Double" BorderColor="#85C1E9" BorderWidth="6px">
+            <asp:Table ID="AddedParentsTable" GridLines="Both" HorizontalAlign="Center" Font-Names="Verdana" Font-Size="8pt" CellPadding="15" CellSpacing="0" Runat="server"  BorderStyle="Groove" BorderColor="#85C1E9" BorderWidth="6px">
                 <asp:TableRow>
                     <asp:TableCell Font-Bold="true">ParentId</asp:TableCell>
                 </asp:TableRow>
