@@ -120,6 +120,11 @@ namespace SupplyChain.Classes {
                 return;
             }
 
+            if (message.StartsWith("BlockID")) {
+                ProductInfoPage.lastBlockID = message.Substring(7);
+                ProductInfoPage.waitBlockID = false; // signal
+            }
+
         }
 
         public static string JsonSerialize(object graph) {

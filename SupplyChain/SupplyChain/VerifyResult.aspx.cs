@@ -23,14 +23,14 @@ namespace SupplyChain {
 
             if(TCP.minerIPs.Count != 0) TCP.Send(TCP.minerIPs[0], "verify" + id);
 
-            //while (!finish) ;
+            while(!finish);
+
+            finish = false;
 
         }
 
 
         public void printProductInTable(Product product) {
-
-            VerifyResultTable = new Table();
 
             product.Features.Sort((f1, f2) => f1.Date.CompareTo(f2.Date));
 

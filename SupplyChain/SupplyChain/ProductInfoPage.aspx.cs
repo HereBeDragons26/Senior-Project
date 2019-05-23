@@ -12,8 +12,18 @@ namespace SupplyChain {
 
         static Product currentProduct;
         static List<long> parents;
+        public static bool waitBlockID;
+        public static string lastBlockID;
 
         protected void Page_Load(object sender, EventArgs e) {
+            
+            // in case, no logged in
+            if (Request.Cookies["UserIdentity"] == null) {
+                // Always redirect to the mainpage
+                Response.Redirect("MainPage.aspx");
+
+                return;
+            }           
 
             if (!IsPostBack) {
                 currentProduct = new Product();
@@ -21,15 +31,8 @@ namespace SupplyChain {
                 DateInput.Text = DateTime.Now.ToString("dd/MM/yyyy");
             }
 
-            // in case, no logged in
-            if (Request.Cookies["UserIdentity"] == null) {
-                // Always redirect to the mainpage
-                Response.Redirect("MainPage.aspx");
-
-                return;
-            }
             DateInput.Text = DateTime.Now.ToString("yyyy-MM-dd");
-           
+
         }
 
         protected void NewInfoButton_Click(object sender, EventArgs e) {
@@ -81,6 +84,14 @@ namespace SupplyChain {
 
             PrintProductInAddedInfosTable(currentProduct);
             PrintParentsInAddedParentsTable(parents);
+
+            /** Wait until block id recieved from miners **/
+            waitBlockID = true;
+            while(waitBlockID);
+
+            // print blockID
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "key1", "alert( BlockID: " + lastBlockID + ")", true);
+
         }
 
         protected void PrintProductInAddedInfosTable(Product product) {
